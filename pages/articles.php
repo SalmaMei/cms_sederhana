@@ -75,7 +75,7 @@ $categories = $stmt->fetchAll();
 
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Article List</h3>
                         <div class="card-tools">
@@ -85,20 +85,20 @@ $categories = $stmt->fetchAll();
                         </div>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
-                            <thead>
+                        <table class="table table-hover text-nowrap table-striped table-bordered">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <th>Title</th>
-                                    <th>Category</th>
-                                    <th>Author</th>
-                                    <th>Status</th>
-                                    <th>Created</th>
-                                    <th>Actions</th>
+                                    <th style="background-color: #343a40; color: white;">Title</th>
+                                    <th style="background-color: #343a40; color: white;">Category</th>
+                                    <th style="background-color: #343a40; color: white;">Author</th>
+                                    <th style="background-color: #343a40; color: white;">Status</th>
+                                    <th style="background-color: #343a40; color: white;">Created</th>
+                                    <th style="background-color: #343a40; color: white;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($articles as $article): ?>
-                                <tr>
+                                <tr style="background-color: #ffffff;">
                                     <td><?php echo htmlspecialchars($article['title']); ?></td>
                                     <td>
                                         <span class="badge badge-info">
@@ -192,6 +192,39 @@ $categories = $stmt->fetchAll();
         </div>
     </div>
 </section>
+
+<style>
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa !important;
+    transition: background-color 0.2s ease;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+.card-outline.card-primary {
+    border-top: 3px solid #007bff;
+}
+
+.btn-group .btn {
+    margin: 0 2px;
+}
+
+.badge {
+    padding: 5px 10px;
+    font-size: 85%;
+}
+</style>
 
 <!-- Add Article Modal -->
 <div class="modal fade" id="addArticleModal" tabindex="-1" role="dialog" aria-labelledby="addArticleModalLabel" aria-hidden="true">

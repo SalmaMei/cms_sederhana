@@ -7,6 +7,15 @@ if (!isset($_SESSION['user_id']) && !isset($_GET['page'])) {
     header('Location: index.php?page=login');
     exit();
 }
+
+// Define allowed pages
+$allowed_pages = [
+    'dashboard' => 'pages/dashboard.php',
+    'articles' => 'pages/articles.php',
+    'categories' => 'pages/categories.php',
+    'users' => 'pages/users.php',
+    'login' => 'pages/login.php'
+];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,12 +47,14 @@ if (!isset($_SESSION['user_id']) && !isset($_GET['page'])) {
                 include 'pages/login.php';
             } else {
                 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
-                $page_file = "pages/$page.php";
                 
-                if (file_exists($page_file)) {
-                    include $page_file;
+                // Check if page is allowed and exists
+                if (isset($allowed_pages[$page]) && file_exists($allowed_pages[$page])) {
+                    include $allowed_pages[$page];
                 } else {
-                    include 'pages/dashboard.php';
+                    // If page doesn't exist, redirect to dashboard
+                    header('Location: index.php?page=dashboard');
+                    exit();
                 }
             }   
             ?>

@@ -1,6 +1,12 @@
 <?php
 session_start();
 require_once 'config/database.php';
+
+// Redirect to login if not logged in
+if (!isset($_SESSION['user_id']) && !isset($_GET['page'])) {
+    header('Location: index.php?page=login');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +38,13 @@ require_once 'config/database.php';
                 include 'pages/login.php';
             } else {
                 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
-                include "pages/$page.php";
+                $page_file = "pages/$page.php";
+                
+                if (file_exists($page_file)) {
+                    include $page_file;
+                } else {
+                    include 'pages/dashboard.php';
+                }
             }   
             ?>
         </div>
@@ -46,5 +58,20 @@ require_once 'config/database.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script>
+    $(document).ready(function() {
+        // Enable all tooltips
+        $('[data-toggle="tooltip"]').tooltip();
+        
+        // Enable all popovers
+        $('[data-toggle="popover"]').popover();
+        
+        // Handle sidebar menu active state
+        var currentPage = '<?php echo $page; ?>';
+        $('.nav-sidebar a[href*="page=' + currentPage + '"]').addClass('active');
+    });
+    </script>
 </body>
 </html> 

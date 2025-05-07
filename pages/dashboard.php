@@ -51,7 +51,7 @@ if ($hour >= 5 && $hour < 12) {
         <!-- Welcome Message -->
         <div class="row">
             <div class="col-12">
-                <div class="card bg-gradient-primary">
+                <div class="card bg-gradient-success">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-8">
@@ -75,7 +75,7 @@ if ($hour >= 5 && $hour < 12) {
         <div class="row">
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
-                    <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-newspaper"></i></span>
+                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-newspaper"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Total Articles</span>
                         <span class="info-box-number"><?php echo $total_articles; ?></span>
@@ -114,7 +114,7 @@ if ($hour >= 5 && $hour < 12) {
         <div class="row">
             <!-- Recent Articles -->
             <div class="col-md-8">
-                <div class="card">
+                <div class="card card-outline card-info">
                     <div class="card-header border-transparent">
                         <h3 class="card-title">Recent Articles</h3>
                         <div class="card-tools">
@@ -167,7 +167,7 @@ if ($hour >= 5 && $hour < 12) {
 
             <!-- Category Stats -->
             <div class="col-md-4">
-                <div class="card">
+                <div class="card card-outline card-success">
                     <div class="card-header">
                         <h3 class="card-title">Articles by Category</h3>
                         <div class="card-tools">
@@ -183,10 +183,10 @@ if ($hour >= 5 && $hour < 12) {
                                 <div class="product-info">
                                     <a href="javascript:void(0)" class="product-title">
                                         <?php echo htmlspecialchars($stat['name']); ?>
-                                        <span class="badge badge-info float-right"><?php echo $stat['total']; ?></span>
+                                        <span class="badge badge-success float-right"><?php echo $stat['total']; ?></span>
                                     </a>
                                     <div class="progress progress-sm">
-                                        <div class="progress-bar bg-info" style="width: <?php echo ($stat['total'] / $total_articles * 100); ?>%"></div>
+                                        <div class="progress-bar bg-success" style="width: <?php echo ($stat['total'] / $total_articles * 100); ?>%"></div>
                                     </div>
                                 </div>
                             </li>
